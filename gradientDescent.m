@@ -16,7 +16,7 @@ for iter = 1:num_iters
     % Hint: While debugging, it can be useful to print out the values
     %       of the cost function (computeCost) and gradient here.
     %
-  
+
     %select the first column of the X
     X1 = X(:,1);
     %select the second column of the X
@@ -26,6 +26,12 @@ for iter = 1:num_iters
     %using the gradient method to update theta
     theta(1) = theta(1) - alpha * (1/m) * sum((hypothesis - y)' *  X1);
     theta(2) = theta(2) - alpha * (1/m) * sum((hypothesis - y)' *  X2);
+
+%For theta(1), you don’t need to use transpose and X1 because X1 value is all 1.
+%But for clarity and consistency, just use transpose and X1. 
+
+
+
 
 
     % ============================================================
