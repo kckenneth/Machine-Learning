@@ -18,16 +18,18 @@ grad = zeros(size(theta));
 %               derivatives of the cost w.r.t. each parameter in theta
 
 %output of hypothesis
-hypothesis = sigmoid(X * theta);
+h = sigmoid(X * theta);
 %compute the J,not regularize the parameter theta_0(in the matlab,the fist element of theta is indexed as 1)
-J = sum(-y'*log(hypothesis)-(1-y)'*log(1-hypothesis)) / m + (sum(theta(2:size(theta)) .^ 2)) * lambda / (2 * m);
+J = (1/m)* (-y'*log(h)-(1-y)'*log(1-h)) + (lambda/(2*m))*(sum(theta(2:size(theta)).^ 2));
 
 %compute the gradient
 %formula of grad_1 is different from the other gradient.
-grad(1) = sum((hypothesis - y)' *  X(:,1)) / m;
+
+grad(1) = sum((h - y)' *  X(:,1)) / m;
 for theta_index = 2: size(X,2);
-    grad(theta_index) = sum((hypothesis - y)' *  X(:,theta_index)) / m + lambda / m * theta(theta_index);
+    grad(theta_index) = (1/m) * ((h-y)'* X(:,theta_index)) + (lambda/m) * theta(theta_index);
 end
+
 
 
 
