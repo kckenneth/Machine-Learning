@@ -17,37 +17,14 @@ for iter = 1:num_iters
     %       of the cost function (computeCostMulti) and gradient here.
     %
 
-
-
 %output of hypothesis
+h = X*theta;
 
+for theta_index = 1:size(X,2);
+    theta(theta_index) = theta(theta_index) - alpha * (1/m) * (h - y)' * X(:,theta_index);
+end
 
-X1 = X(:,1);
-X2 = X(:,2);
-X3 = X(:,3);
-
-hypothesis = X * theta;
-
-theta(1) = theta(1) - alpha * (1/m) * sum((hypothesis - y)’ * X1);
-theta(2) = theta(2) - alpha * (1/m) * sum((hypothesis - y)’ * X2);
-theta(3) = theta(3) - alpha * (1/m) * sum((hypothesis - y)’ * X3);
-
-
-%This doesn’t work. Why?
-%But the following works, why?
-
-    
-    %output of hypothesis
-    hypothesis = X * theta;
-    for theta_index = 1: size(X,2);
-        %using the gradient method to update theta
-        theta(theta_index) = theta(theta_index) - alpha * sum((hypothesis - y)' *  X(:,theta_index)) / m;
-    end
-
-%If you want to run the program, delete the first part from X1 assignment until %
-
-
-
+%You don’t need to use ‘sum’ because multiplication between (h-y)' and X is a total sum.
 
     % ============================================================
 
