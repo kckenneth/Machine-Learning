@@ -25,13 +25,7 @@ J = (1/m)* (-y'*log(h)-(1-y)'*log(1-h)) + (lambda/(2*m))*(sum(theta(2:size(theta
 %compute the gradient
 %formula of grad_1 is different from the other gradient.
 
-grad(1) = sum((h - y)' *  X(:,1)) / m;
-for theta_index = 2: size(X,2);
-    grad(theta_index) = (1/m) * ((h-y)'* X(:,theta_index)) + (lambda/m) * theta(theta_index);
-end
-
-
-
+grad(1) = (1/m)*((h - y)'* X(:,1));for theta_index = 2: size(X,2);    grad(theta_index) = (1/m)*((h-y)' * X(:,theta_index)) + (lambda/m) * theta(theta_index);end
 
 
 % =============================================================

@@ -23,13 +23,17 @@ grad = zeros(size(theta));
 %output of hypothesis
 h = sigmoid(X * theta);
 %compute the J
-J = sum(-y'*log(h)-(1-y)'*log(1-h)) / m;
+J = (1/m) * (-y'*log(h)-(1-y)'*log(1-h)); 
+
+%You can also use J = sum(-y'*log(h)-(1-y)'*log(1-h)/m
+%Since the y and log(h) value are column vector, you do not need to use sum actually.
+
 
 %compute the gradient
 for theta_index = 1: size(X,2);
     %Compute the partial derivatives and set grad to the partial
     %derivatives of the cost w.r.t. each parameter in theta
-    grad(theta_index) = sum((h - y)' *  X(:,theta_index)) / m;
+    grad(theta_index) = (1/m)* ((h - y)' *  X(:,theta_index));
 end
 
 
